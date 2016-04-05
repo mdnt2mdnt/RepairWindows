@@ -9,11 +9,15 @@ goto check_Permissions
     if %errorLevel% == 0
 	(
         echo Success: Administrative permissions confirmed.
-		color 2A
+		echo ----------------------------------------------
 		echo This script will repair Windows Component store and check for any corrupt core Windows files too.
+		echo ----------------------------------------------
 		pause
+		cls
 		sfc /scannow
 		echo Process completed, now checking Windows Component store.
+		timeout 15
+		cls
 		DISM /Online /Cleanup-Image /RestoreHealth
     )
 	else
